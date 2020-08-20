@@ -11,13 +11,13 @@ import RxCocoa
 
 extension ObservableType {
     
-    public func catchErrorJustComplete() -> Observable<Element> {
+    public func catchErrorJustComplete() -> Observable<E> {
         return catchError { _ in
             return Observable.empty()
         }
     }
     
-    public func asDriverOnErrorJustComplete() -> Driver<Element> {
+    public func asDriverOnErrorJustComplete() -> Driver<E> {
         return asDriver { _ in
             return Driver.empty()
         }
@@ -27,16 +27,16 @@ extension ObservableType {
         return map { _ in }
     }
     
-    public func mapToOptional() -> Observable<Element?> {
-        return map { value -> Element? in value }
+    public func mapToOptional() -> Observable<E?> {
+        return map { value -> E? in value }
     }
     
-    public func unwrap<T>() -> Observable<T> where Element == T? {
+    public func unwrap<T>() -> Observable<T> where E == T? {
         return flatMap { Observable.from(optional: $0) }
     }
 }
 
-extension ObservableType where Element == Bool {
+extension ObservableType where E == Bool {
     public func not() -> Observable<Bool> {
         return map(!)
     }
@@ -68,7 +68,7 @@ private func getThreadName() -> String {
 }
 
 extension ObservableType {
-    public func dump() -> Observable<Self.Element> {
+    public func dump() -> Observable<Self.E> {
         return self.do(onNext: { element in
             let threadName = getThreadName()
             print("[D] \(element) received on \(threadName)")

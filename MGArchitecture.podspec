@@ -25,8 +25,8 @@ s.source = { :git => "https://github.com/tuan188/MGArchitecture.git",
 
 # 7
 s.framework = "UIKit"
-s.dependency 'RxSwift', '~> 5.1'
-s.dependency 'RxCocoa', '~> 5.1'
+s.dependency 'RxSwift', '~> 4.5'
+s.dependency 'RxCocoa', '~> 4.5'
 
 # 8
 s.source_files = "MGArchitecture/Sources/**/*.{swift}"

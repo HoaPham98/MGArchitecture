@@ -9,9 +9,9 @@
 import RxSwift
 import RxCocoa
 
-extension ObservableType where Element: Sequence {
+extension ObservableType where E: Sequence {
     
-    public typealias T = Element.Iterator.Element
+    public typealias T = E.Iterator.Element
     
     /// Create an observable which is an Array of the projected values
     /// the operator produce an array of the same size than the original sequence
@@ -20,7 +20,7 @@ extension ObservableType where Element: Sequence {
         typealias Pair = (value: V, index: Int) // swiftlint:disable:this nesting
         return self
             .flatMapLatest { (seq) -> Observable<[V]> in
-                // get number of element in sequence
+                // get number of E in sequence
                 let count = Array(seq).count
                 var buffer = Dictionary<Int, V>(minimumCapacity: count) // swiftlint:disable:this syntactic_sugar
                 

@@ -15,16 +15,16 @@ extension SharedSequenceConvertibleType {
         return map { _ in }
     }
     
-    public func mapToOptional() -> SharedSequence<SharingStrategy, Element?> {
-        return map { value -> Element? in value }
+    public func mapToOptional() -> SharedSequence<SharingStrategy, E?> {
+        return map { value -> E? in value }
     }
     
-    public func unwrap<T>() -> SharedSequence<SharingStrategy, T> where Element == T? {
+    public func unwrap<T>() -> SharedSequence<SharingStrategy, T> where E == T? {
         return flatMap { SharedSequence.from(optional: $0) }
     }
 }
 
-extension SharedSequenceConvertibleType where Element == Bool {
+extension SharedSequenceConvertibleType where E == Bool {
     public func not() -> SharedSequence<SharingStrategy, Bool> {
         return map(!)
     }

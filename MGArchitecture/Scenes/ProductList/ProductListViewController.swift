@@ -77,11 +77,11 @@ final class ProductListViewController: UIViewController, BindableType {
             .disposed(by: rx.disposeBag)
 
         output.isReloading
-            .drive(tableView.isRefreshing)
+            .drive(tableView.refreshing)
             .disposed(by: rx.disposeBag)
 
         output.isLoadingMore
-            .drive(tableView.isLoadingMore)
+            .drive(tableView.loadingMore)
             .disposed(by: rx.disposeBag)
 
         output.selectedProduct

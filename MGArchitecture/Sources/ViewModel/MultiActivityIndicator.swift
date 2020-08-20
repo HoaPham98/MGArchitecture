@@ -22,7 +22,7 @@ open class MultiActivityIndicator: ActivityIndicator {
             .distinctUntilChanged()
     }
     
-    fileprivate func trackActivityOfObservable<O: ObservableConvertibleType>(_ source: O) -> Observable<O.Element> {
+    fileprivate func trackActivityOfObservable<O: ObservableConvertibleType>(_ source: O) -> Observable<O.E> {
         let id = UUID().uuidString
         
         return source.asObservable()
